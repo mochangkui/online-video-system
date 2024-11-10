@@ -11,6 +11,7 @@
     <groupId>com.course</groupId>
     <artifactId>online-video-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>online-video-system</name>
     <description>online-video-system</description>
     <url/>
@@ -20,6 +21,9 @@
     <developers>
         <developer/>
     </developers>
+    <modules>
+        <module>eureka</module>
+    </modules>
     <scm>
         <connection/>
         <developerConnection/>
@@ -31,11 +35,6 @@
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
