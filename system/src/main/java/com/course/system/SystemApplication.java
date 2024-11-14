@@ -7,11 +7,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan("com.course")
+//@ComponentScan({ "com.course.system", "com.course.server"})
+@ComponentScan("com.course.server")
+@ComponentScan({"com.course.system"})
+//@ComponentScans({@ComponentScan({ "com.course.system", "com.course.server"})})
+//@ComponentScans({ @ComponentScan("com.course.server"), @ComponentScan("com.course.system") })
 @MapperScan("com.course.server.mapper")
 public class SystemApplication {
 
