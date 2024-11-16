@@ -9,13 +9,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-public class TestController {
+public class ChapterController {
 
     @Resource
     private ChapterService chapterService;
 
-    @RequestMapping("/test")
-    public List<Chapter> test() {
+    @RequestMapping("/list")
+    public List<Chapter> list() {
         return chapterService.list();
     }
 }
