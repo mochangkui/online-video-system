@@ -12,9 +12,9 @@ import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @EnableEurekaClient
-//@ComponentScan({ "com.course.system", "com.course.server"})
-@ComponentScan("com.course.server")
-@ComponentScan({"com.course.system"})
+@ComponentScan({ "com.course.system", "com.course.server"})
+//@ComponentScan("com.course.server")
+//@ComponentScan({"com.course.system"})
 //@ComponentScans({@ComponentScan({ "com.course.system", "com.course.server"})})
 //@ComponentScans({ @ComponentScan("com.course.server"), @ComponentScan("com.course.system") })
 @MapperScan("com.course.server.mapper")
