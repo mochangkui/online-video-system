@@ -105,14 +105,12 @@
         this.check(param);
       },
 
-
-
       /**
        * 检查文件状态，是否已上传过？传到第几个分片？
        */
       check (param) {
         let _this = this;
-        _this.$ajax.get(process.env.VUE_APP_SERVER + '/file/admin/check/' + param.key).then((response)=>{
+        _this.$ajax.get(process.env.VUE_APP_SERVER + '/file/admin/file/check/' + param.key).then((response)=>{
           let resp = response.data;
           if (resp.success) {
             let obj = resp.content;
@@ -156,7 +154,7 @@
 
           param.shard = base64;
 
-          _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/' + _this.url, param).then((response) => {
+          _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/file/' + _this.url, param).then((response) => {
             let resp = response.data;
             console.log("上传文件成功：", resp);
             Progress.show(parseInt(shardIndex * 100 / shardTotal));
