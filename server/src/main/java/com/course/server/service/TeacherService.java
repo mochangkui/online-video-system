@@ -96,7 +96,9 @@ public class TeacherService {
     public TeacherDto findById(String id) {
         Teacher teacher = teacherMapper.selectByPrimaryKey(id);
         TeacherDto teacherDto = new TeacherDto();
-        BeanUtils.copyProperties(teacher, teacherDto);
+        if (teacher != null) {
+            BeanUtils.copyProperties(teacher, teacherDto);
+        }
         return teacherDto;
     }
 }

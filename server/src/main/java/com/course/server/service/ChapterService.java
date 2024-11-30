@@ -1,6 +1,7 @@
 package com.course.server.service;
 
 import com.course.server.domain.Chapter;
+import com.course.server.domain.ChapterExample;
 import com.course.server.dto.ChapterDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.ChapterMapper;
@@ -70,5 +71,21 @@ public class ChapterService {
         if (StringUtils.isEmpty(id)) {
             chapterMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    /**
+     * 查询某一课程下的所有章
+     */
+    public List<ChapterDto> listByCourse(String courseId) {
+        ChapterExample example = new ChapterExample();
+        example.createCriteria().andCourseIdEqualTo(courseId);
+        List<Chapter> chapterList = chapterMapper.selectByExample(example);
+        List<ChapterDto> chapterDtoList = new ArrayList<>();
+        for (Chapter chapter : chapterList) {
+            ChapterDto chapterDto = new ChapterDto();
+            BeanUtils.copyProperties(chapter, chapterDto);
+            chapterDtoList.add(chapterDto);
+        }
+        return chapterDtoList;
     }
 }

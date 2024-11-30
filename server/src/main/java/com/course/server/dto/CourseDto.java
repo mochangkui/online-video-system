@@ -2,6 +2,7 @@ package com.course.server.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class CourseDto {
     private String id;
@@ -29,6 +30,18 @@ public class CourseDto {
     private Date createdAt;
 
     private Date updatedAt;
+
+    private List<CategoryDto> categorys;
+
+    private List<ChapterDto> chapters;
+
+    private List<SectionDto> sections;
+
+    private String content;
+
+    private TeacherDto teacher;
+
+    private String teacherId;
 
     public String getId() {
         return id;
@@ -134,26 +147,77 @@ public class CourseDto {
         this.updatedAt = updatedAt;
     }
 
+    public List<CategoryDto> getCategorys() {
+        return categorys;
+    }
+
+    public void setCategorys(List<CategoryDto> categorys) {
+        this.categorys = categorys;
+    }
+
+    public List<ChapterDto> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<ChapterDto> chapters) {
+        this.chapters = chapters;
+    }
+
+    public List<SectionDto> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<SectionDto> sections) {
+        this.sections = sections;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public TeacherDto getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(TeacherDto teacher) {
+        this.teacher = teacher;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", summary=").append(summary);
+        final StringBuffer sb = new StringBuffer("CourseDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", summary='").append(summary).append('\'');
         sb.append(", time=").append(time);
         sb.append(", price=").append(price);
-        sb.append(", image=").append(image);
-        sb.append(", level=").append(level);
-        sb.append(", charge=").append(charge);
-        sb.append(", status=").append(status);
+        sb.append(", image='").append(image).append('\'');
+        sb.append(", level='").append(level).append('\'');
+        sb.append(", charge='").append(charge).append('\'');
+        sb.append(", status='").append(status).append('\'');
         sb.append(", enroll=").append(enroll);
         sb.append(", sort=").append(sort);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
-        sb.append("]");
+        sb.append(", categorys=").append(categorys);
+        sb.append(", chapters=").append(chapters);
+        sb.append(", sections=").append(sections);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", teacher=").append(teacher);
+        sb.append(", teacherId='").append(teacherId).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

@@ -89,16 +89,15 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">视频</label>
                 <div class="col-sm-10">
-<!--                  <vod v-bind:input-id="'video-upload'"-->
-<!--                        v-bind:text="'上传VOD'"-->
-<!--                        v-bind:suffixs="['mp4']"-->
-<!--                        v-bind:use="FILE_USE.COURSE.key"-->
-<!--                        v-bind:after-upload="afterUpload"></vod>-->
+                  <big-file v-bind:input-id="'video-upload'"
+                    v-bind:text="'上传VOD'"
+                    v-bind:suffixs="['mp4']"
+                    v-bind:use="FILE_USE.COURSE.key"
+                    v-bind:url="'upload'"
+                    v-bind:after-upload="afterUpload"></big-file>
                   <div v-show="section.video" class="row">
                     <div class="col-md-9">
-<!--                      <player v-bind:player-id="'form-player-div'"-->
-<!--                              ref="player"></player>-->
-<!--                      <video v-bind:src="section.video" id="video" controls="controls" class="hidden"></video>-->
+                      <video v-bind:src="section.video" id="video" controls="controls"></video>
                     </div>
                   </div>
                 </div>
@@ -145,23 +144,16 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-<!--    <modal-player ref="modalPlayer"></modal-player>-->
   </div>
 </template>
 
 <script>
   import Pagination from "../../components/pagination";
-  // import BigFile from "../../components/big-file";
-  // import Vod from "../../components/vod";
-  // import Player from "../../components/player";
-  // import ModalPlayer from "../../components/modal-player";
+  import BigFile from "../../components/big-file";
   export default {
     components: {
-      // ModalPlayer,
-      // Player,
       Pagination,
-      // BigFile,
-      // Vod
+      BigFile,
     },
     name: "business-section",
     data: function() {
@@ -253,13 +245,14 @@
        * 点击【删除】
        */
       del(id) {
+        const _this = this
         Confirm.show("删除小节后不可恢复，确认删除？", function () {
           Loading.show();
-          this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/section/delete/' + id).then((response)=>{
+            _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/section/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
-              this.list(1);
+              _this.list(1);
               Toast.success("删除成功！");
             }
           })
@@ -269,8 +262,8 @@
       afterUpload(resp) {
         let video = resp.content.path;
         let vod = resp.content.vod;
-        this.section.video = video;
-        this.section.vod = vod;
+        this.$set(this.section, 'video', video)
+        this.$set(this.section, 'vod', vod)
         this.getTime();
         this.$refs.player.playUrl(video);
       },
@@ -279,18 +272,11 @@
        * 获取时长
        */
       getTime() {
-        setTimeout(function () {
-          let ele = document.getElementById("video");
-          this.section.time = parseInt(ele.duration, 10);
-        }, 1000);
-      },
-
-      /**
-       * 播放视频
-       * @param section
-       */
-      play(section) {
-        this.$refs.modalPlayer.playVod(section.vod);
+          let video = document.getElementById("video");
+          const _this = this
+          video.oncanplay = function () {
+            _this.$set(_this.section, 'time', parseInt(video.duration, 10))
+          }
       }
     }
   }

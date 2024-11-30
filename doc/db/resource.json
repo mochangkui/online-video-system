@@ -47,6 +47,15 @@
         "children": [
             {"id": "020501", "name": "增删改查", "request": ["/business/admin/sms"]}
         ]
+    }, {
+        "id": "0206", "name": "课程/大章", "page": "business/chapter",
+        "children": []
+    }, {
+        "id": "0207", "name": "课程/大章/小节", "page": "business/section",
+        "children": []
+    }, {
+        "id": "0208", "name": "课程/内容", "page": "business/content",
+        "children": []
     }]
 }, {
     "id": "03", "name": "文件管理",
