@@ -469,9 +469,8 @@
 
       afterUpload(resp) {
         let image = resp.content.path;
-        this.course.image = image;
+        this.$set(this.course, 'image', image);
       },
-
     }
   }
 </script>
