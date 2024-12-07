@@ -1,4 +1,4 @@
-package com.course.file.admin;
+package com.course.file.controller.admin;
 
 import com.course.server.dto.FileDto;
 import com.course.server.dto.PageDto;
